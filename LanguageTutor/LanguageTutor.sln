@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBContext", "PostgresDBContext\DBContext.csproj", "{7AEC0F0F-D01F-462D-AEE7-00E534698052}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageTutor", "LanguageTutor\LanguageTutor.csproj", "{A127F299-477F-49D9-B6A2-53E38D00C567}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D35F45F1-E197-4AC7-B0FE-5B342C3965EE} = {D35F45F1-E197-4AC7-B0FE-5B342C3965EE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageTutorService", "LanguageTutorService\LanguageTutorService.csproj", "{D35F45F1-E197-4AC7-B0FE-5B342C3965EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7AEC0F0F-D01F-462D-AEE7-00E534698052} = {7AEC0F0F-D01F-462D-AEE7-00E534698052}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AEC0F0F-D01F-462D-AEE7-00E534698052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AEC0F0F-D01F-462D-AEE7-00E534698052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AEC0F0F-D01F-462D-AEE7-00E534698052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AEC0F0F-D01F-462D-AEE7-00E534698052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A127F299-477F-49D9-B6A2-53E38D00C567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A127F299-477F-49D9-B6A2-53E38D00C567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A127F299-477F-49D9-B6A2-53E38D00C567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A127F299-477F-49D9-B6A2-53E38D00C567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D35F45F1-E197-4AC7-B0FE-5B342C3965EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D35F45F1-E197-4AC7-B0FE-5B342C3965EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D35F45F1-E197-4AC7-B0FE-5B342C3965EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D35F45F1-E197-4AC7-B0FE-5B342C3965EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16898CCD-BE88-4206-AD58-306166D6C95D}
+	EndGlobalSection
+EndGlobal

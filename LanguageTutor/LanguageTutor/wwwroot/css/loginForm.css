@@ -1,0 +1,131 @@
+.dws-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+
+.dws-form {
+    background-color: #fff;
+    padding: 10px;
+    width: 330px;
+}
+
+    .dws-form a {
+        text-decoration: none;
+        transition: .5s;
+        color: #316879;
+    }
+
+.dws-form a:hover {
+    color: #sed7d8;
+}
+
+.dws-form ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dws-form input {
+    display: block;
+    width: 100%;
+}
+
+.tab-form {
+    background: #fff;
+    display: none;
+    padding: 30px 20px 10px;
+}
+
+.tab-form.active,
+#tab-1:checked ~ #form-1,
+#tab-2:checked ~ #form-2 {
+    display: block;
+}
+
+label.tab {
+    color: #316879;
+    padding: 10px;
+    border: 0px solid #316879;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    label.tab.active,
+    input[name='tabs']:checked + label {
+        color: #fdfdfd;
+        background: #316879;
+    }
+
+input[name='tabs'] {
+    display: none;
+}
+
+.input {
+    font-size: 16px;
+    border: 2px solid #e9eaea;
+    padding: 12px 14px;
+    box-sizing: border-box;
+    margin-bottom: 22px;
+    color: #1e8da6;
+    outline: none;
+}
+
+button {
+    background: #ced7d8;
+    width: 270px;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    line-height: 46px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.box-input {
+    position: relative;
+}
+
+.box-input input {
+    border: none;
+    border-bottom: 2px solid #e9eaea;
+    padding: 10px 0;
+}
+
+.box-input label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 10px;
+    color: #c4c9c9;
+    transition: .5s;
+    pointer-events: none;
+
+}
+
+    .box-input input:focus ~ label,
+    .box-input input:valid ~ label {
+        top: -30px;
+        font-size: 12px;
+        color: #33d3fe;
+        font-family: 'Times New Roman', Times, serif !important;
+    }
+
+.alert-danger h5 {
+    padding: 5px;
+    font-family: 'Times New Roman', Times, serif !important;
+}
+.error {
+    color: red;
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+.message{
+    margin-bottom: 6px;
+    color: limegreen;
+    font-family:'Times New Roman', Times, serif !important;
+}

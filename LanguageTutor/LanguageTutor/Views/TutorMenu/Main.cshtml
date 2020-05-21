@@ -1,0 +1,144 @@
+﻿@page
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TutorLanguage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .img1 {
+            height: 200px;
+            background: url(/img/foto.jpg) no-repeat;
+            background-size: 100% auto ;
+            background-position: center;
+            background-color:#f47a60;
+            border-bottom:3px;
+            border-radius: 10px;
+        }
+
+        .img2 {
+            height: 200px;
+            background: url(/img/ger.png);
+        }
+
+        .img3 {
+            height: 200px;
+            background: url(/img/cod.png);
+        }
+
+        .img4 {
+            height: 200px;
+             background: url(/img/frc.png);
+             background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron text-center" style="margin-bottom:0; background-color:#ced7d8 !important" align="center">
+        <h1>Изучай, путешествуй, познавай</h1>
+        <p>вместе с TutorLanguage</p>
+    </div>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background-color:#316879 !important; max-height:300px !important;">
+        <a class="navbar-brand" href="~/TutorMenu/Main">Главная</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Contact">Личный кабинет</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/TutorMenu/SelectLang">Начать изучение</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Contact">Контакты</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-7">
+                <br /><br />
+
+                <h2>Добавлен французкий язык</h2>
+                <h5>Май 20, 2020</h5>
+                <div class="img4" height:100%></div>
+                <p></p>
+                <p>
+                    Начиная с 20 мая 2020 года Вы можете изучать в данном Web-приложении Французкий язык. Роль французского языка в мире весьма велика. Во многих странах он является вторым государственным языком. Люди общаются на французском языке на пяти континентах: в Европе, Америке, Африке, Азии и Океании. Французкий язык занимает 12-е место по распространенности в мире, уступая английскому, испанскому, китайскому и некоторым другим языкам.
+                </p>
+                <br>
+                <h2>Добавлен немецкий язык</h2>
+                <h5>Май 19, 2020</h5>
+                <div class="img2" height:100%></div>
+                <p></p>
+                <p>
+                    Сегодня, 19 мая, вышло новое глобальное обновление для нашего любимого проекта TutorLanguage. Мы увидели, что есть много людей, которые интересуются таким иностранным языком как немецкий, и решили добавить в базу слова из немецкого языка. Теперь вы в списке можете выбрать новый язык для изучения - Немецкий.
+                </p>
+                <br>
+                <h2>Исправлены баги</h2>
+                <h5>Май 14, 2020</h5>
+                <div class="img3"></div>
+                <p></p>
+                <p>
+                    Данное приложение только недавно вышло в свет, и в нем встречаются недочеты, которые мы стараемся убрать в ближайшее время. Кто следит за нашим проектом может заметить что мы постоянно его улучшаем. В последнем обновлении исправлено более 14 багов и обновлен дизайн, встречайте!
+                </p><br><br>
+            </div>
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-4" style="background-color:#ced7d8; ">
+                <br /><br /><br />
+                <div class="img1"></div>
+                <h2 style="margin-bottom:0" align="center">Немцов Вениамин</h2>          <br /><br />
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="background-color:#316879" href="~/TutorMenu/SelectLang"align="center"><br>Начать изучение<br><br></a>
+                    </li>
+                </ul>
+                <br />
+
+                <p>
+                    <br />
+                    Количество слов за последнюю неделю: 2455
+                    <br /><br />
+                    Дата регистрации: Март 20, 2020
+                    <br /><br />
+                    Рейтинг на сайте: 3
+                    <br />
+                </p>
+
+                <br><br>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="background-color:#316879" href="~/TutorMenu" align="center">Личный кабинет<br></a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="background-color:#316879" href="~/Home/Greeting" align="center">Выйти<br></a>
+                    </li>
+
+                </ul>
+                <hr class="d-sm-none">
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom:0; background-color:#316879; height:80px;  text-align: center; color:white;">
+        <br />
+        <p>© Nemtsov Veniamin, Russia 2020</p>
+    </div>
+</body>
+</html>
