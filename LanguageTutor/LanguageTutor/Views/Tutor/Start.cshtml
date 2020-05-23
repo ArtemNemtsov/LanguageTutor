@@ -1,0 +1,176 @@
+﻿@using LanguageTutorService.ViewModels
+@model PlayVM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Tutor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <meta name=" viewport" content="width=device-width" />
+    <style>
+        h1 {
+        }
+
+        body {
+            background-image: url(/img/sea.jpg);
+            background-repeat: no-repeat;
+            background-size: cover; /* Путь к фоновому изображению */
+            background-color: aliceblue; /* Цвет фона */
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+        var sumError = 0;
+        var sumRight = 0;
+        var translation = "@Model.Translation";
+
+        //  при нажатие кнопки подсказка
+        $(document).on("click", "#idBtHelp", function ShowHelpWorld()
+        {   
+             document.getElementById('helpWord').style.visibility = "visible";
+        })
+
+         //  при нажатие кнопки Сдаюсь
+        $(document).on("click", "#idBtnGiveUp", function GiveUp()
+        {   
+          document.getElementById('idGiveUpWord').style.visibility = "visible";
+          setTimeout('GetNewWord()', 1000);
+        })
+
+        //  обновляем счет
+        function UpdateCount(userAnswer) 
+        {
+            if (userAnswer == translation)
+            {
+                sumRight ++;
+            }
+            else
+            {
+                sumError ++;
+            }
+               document.getElementById('idCountRight').innerHTML = sumRight;
+               document.getElementById('idCountError').innerHTML = sumError;
+        }
+
+        //  при нажатие кнопки Далее
+        function GetNewWord()
+        {
+            const userAnswer = $("#idUserAnswer").val();
+            UpdateCount(userAnswer);
+
+            $.ajax({
+                type: "Post",
+                url: '/Tutor/Continue',
+                data: {
+                    UserTranslation: userAnswer,
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+            }).done(function (data) {
+                document.getElementById('helpWord').style.visibility = "hidden";
+                document.getElementById('idGiveUpWord').style.visibility = "hidden";
+
+                document.getElementById('idUserAnswer').value = "";
+                document.getElementById('currentWord').innerHTML = data.body.word;
+                document.getElementById('helpWord').innerHTML = data.body.wordHelp;
+                document.getElementById('idGiveUpWord').innerHTML = data.body.translation;
+                translation = data.body.translation;
+            })
+        }
+
+    </script>
+
+
+    <div class="jumbotron text-center">
+        <h1>Изучаем иностранный вместе</h1>
+        <p>Теперь понимаешь, насколько это легко?!</p>
+    </div><br> <br><br><br> <br><br><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="alert alert-success">
+                    <p text-size="30px">Текущее слово: </p>
+                    <br />
+                    <h4 align="center" id="currentWord">@Model.Word</h4>
+                    <br />
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <h3 style="color:aliceblue">А сюда перевод:</h3>
+
+                <div class="form-group">
+                    <input autocomplete="off" value="" required autofocus type="text" id="idUserAnswer" style="width:320px; height: 40px"><br />
+                    <a href="http://translate.yandex.ru" style="color:#fff; width:250px; text-decoration:none">Переведено сервисом «Яндекс.Переводчик»</a>
+                </div>
+
+                <input type="button" id="idBtnNextWord" class="btn btn-success" value="Далее"  onclick="GetNewWord()"/>
+                <br />
+
+                <h4 id="idGiveUpWord" style="color:aliceblue; visibility:hidden"> @Model.Translation</h4>
+            </div>
+
+            <div class="col-sm-1">
+                <br><br><br><br><br>
+                <h4 id="helpWord" style="color:aliceblue; margin-right : 5px; visibility:hidden">@Model.WordHelp</h4>
+            </div>
+
+            <div class="col-sm-3" align="left">
+                <h4 style= "hiddencolor:aliceblue">Сложно?</h4>
+                <p style="color:aliceblue" align="left"> Эти кнопки помогут вам вспомнить слова.</p>
+                <input type="button" class="btn btn-warning btn-block" value="Подсказка" id="idBtHelp" />
+                <br>
+                <input type="button" id="idBtnGiveUp" class="btn btn-danger btn-block" value="Cдаюсь!" />
+            </div>
+        </div>
+    </div> <br><br>
+
+    <div class="jumbotron text-center">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-4" align="left">
+                    <h6>
+                        <span> Количество верных ответов :</span>
+                        <span id="idCountRight"> 0 </span>
+                    </h6>
+                </div>
+
+                <div class="col-sm-4" align="left">
+                    <h6>
+                        <span> Количество неверных ответов :</span>
+                        <span id="idCountError"> 0 </span>
+                    </h6>
+                </div>
+
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3" align="right">
+                    <a class="btn btn-light btn-block" href="~/TutorMenu">
+                        >
+                        Назад
+                    </a>
+                    <a class="btn btn-secondary btn-block" href="~/Index">
+                        >
+                        На главную
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

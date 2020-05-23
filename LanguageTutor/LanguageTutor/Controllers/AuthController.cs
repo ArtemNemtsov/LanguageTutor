@@ -5,12 +5,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Security.Policy;
 using System.Threading.Tasks;
 
 namespace LanguageTutor.Controllers
@@ -38,10 +36,6 @@ namespace LanguageTutor.Controllers
 
                // аутентификация
                await Authenticate(inputAcount.Login);
-
-              // создаем куки
-                CookieOptions cookieOptions = new CookieOptions();
-                Response.Cookies.Append(cookieKey, "authCook");
 
                 //создаем ссылку, и отправляем ее, чтобы потом зайти по ней
 
@@ -72,12 +66,11 @@ namespace LanguageTutor.Controllers
                 return Json(RespоnceManager.CreateError(ex));
             }
         }
-
-        //public async Task<IActionResult> SignOut()
-        //{
-        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    return RedirectToAction("Greeting", "Home");
-        //}
+        public async Task<IActionResult> SignOut()
+        {
+            await this.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return this.RedirectToAction("Greeting", "Home");
+        }
 
         private async Task Authenticate(string login)
         {

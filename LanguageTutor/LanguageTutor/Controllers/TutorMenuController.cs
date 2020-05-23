@@ -1,54 +1,44 @@
-﻿using LanguageTutor.Views.TutorMenu;
-using LanguageTutorService;
+﻿using LanguageTutorService;
+using LanguageTutorService.Models;
+using LanguageTutorService.Services;
+using LanguageTutorService.ViewModels;
+using MediaStudioService.Core.Classes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace LanguageTutor.Controllers
 {
     [Authorize]
     public class TutorMenuController : Controller
     {
-       private  TopicViewModel tutorMenuModel;
-       private readonly TopicService service;
+       private TopicViewModel tutorMenuModel;
+       private readonly TopicService _topicService;
+       private readonly TutorService _tutorService;
 
-        public TutorMenuController(TopicService topicService)
+
+        public TutorMenuController(TopicService topicService, TutorService tutorService)
         {
-            service = topicService;
+            _tutorService = tutorService;
+            _topicService = topicService;
         }
 
-        [Authorize]
         public IActionResult Main()
         {
             return View();
         }
-
+        
         public IActionResult SelectLang()
         {
-            var topics = service.GetTopics();
+            var topics = _topicService.GetTopics();
 
             tutorMenuModel = new TopicViewModel
             {
-                Message = string.Empty,
                 TopicList = new SelectList(topics, "IdTopic", "NameTopic"),
             };
 
             return View(tutorMenuModel);
-        }
-
-        public IActionResult Play()
-        {
-            PlayViewModel play = new PlayViewModel
-            {
-                Word = "someWord",
-                Translation = "Translation",
-                WordHelp = "WordHelp",
-                SumError = 0,
-                SumRight = 0,
-
-            };
-
-            return View(play);
         }
     }
 }

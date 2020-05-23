@@ -2,11 +2,10 @@
 using DBContext.Models;
 using System;
 using System.Linq;
-using YandexTranslateCSharpSdk;
 
 namespace LanguageTutorService
 {
-   public class AuthService
+    public class AuthService
    {
         private readonly dc58kv94isevv4Context postgres;
 

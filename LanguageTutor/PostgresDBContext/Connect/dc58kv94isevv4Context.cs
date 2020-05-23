@@ -18,8 +18,8 @@ namespace DBContext.Connect
 
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Topic> Topic { get; set; }
+        public virtual DbSet<TtutorAudit> TtutorAudit { get; set; }
         public virtual DbSet<Word> Word { get; set; }
-        public virtual DbSet<Word0xwjqh> Word0xwjqh { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -75,6 +75,52 @@ namespace DBContext.Connect
                     .HasMaxLength(60);
             });
 
+            modelBuilder.Entity<TtutorAudit>(entity =>
+            {
+                entity.HasKey(e => e.IdTutorAudit)
+                    .HasName("ttutor_audit_pkey");
+
+                entity.ToTable("ttutor_audit", "tutor");
+
+                entity.Property(e => e.IdTutorAudit).HasColumnName("id_tutor_audit");
+
+                entity.Property(e => e.CorrectTranslation)
+                    .IsRequired()
+                    .HasColumnName("correct_translation")
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.IsCorrect).HasColumnName("is_correct");
+
+                entity.Property(e => e.LanguageFrom)
+                    .IsRequired()
+                    .HasColumnName("language_from")
+                    .HasMaxLength(40);
+
+                entity.Property(e => e.LanguageTo)
+                    .IsRequired()
+                    .HasColumnName("language_to")
+                    .HasMaxLength(40);
+
+                entity.Property(e => e.NameLogin)
+                    .IsRequired()
+                    .HasColumnName("name_login")
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.Time)
+                    .HasColumnName("time")
+                    .HasColumnType("timestamp(6) with time zone")
+                    .HasDefaultValueSql("now()");
+
+                entity.Property(e => e.UserTranslation)
+                    .HasColumnName("user_translation")
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.Word)
+                    .IsRequired()
+                    .HasColumnName("word")
+                    .HasMaxLength(70);
+            });
+
             modelBuilder.Entity<Word>(entity =>
             {
                 entity.HasKey(e => e.IdWord)
@@ -88,7 +134,9 @@ namespace DBContext.Connect
 
                 entity.Property(e => e.IdWord).HasColumnName("id_word");
 
-                entity.Property(e => e.IdTopic).HasColumnName("id_topic");
+                entity.Property(e => e.IdTopic)
+                    .HasColumnName("id_topic")
+                    .HasDefaultValueSql("10");
 
                 entity.Property(e => e.NameWord)
                     .IsRequired()
@@ -100,21 +148,6 @@ namespace DBContext.Connect
                     .HasForeignKey(d => d.IdTopic)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("word_fk");
-            });
-
-            modelBuilder.Entity<Word0xwjqh>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("word0xwjqh", "pg_temp_178");
-
-                entity.Property(e => e.IdTopic).HasColumnName("id_topic");
-
-                entity.Property(e => e.IdWord).HasColumnName("id_word");
-
-                entity.Property(e => e.Word)
-                    .HasColumnName("word")
-                    .HasMaxLength(60);
             });
 
             OnModelCreatingPartial(modelBuilder);

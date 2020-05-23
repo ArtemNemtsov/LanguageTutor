@@ -49,10 +49,8 @@ $(document).ready(function () {
             }
         } else {
             disableOn()
-            $('.signUpErrorMsg').html('<p>Paroli ne sovpadajut</p>');
+            $('.signUpErrorMsg').html('Пароли не совпадают');
         };
-
-
     });
 
     $('#signIn').on('click', function TrySignIn() {

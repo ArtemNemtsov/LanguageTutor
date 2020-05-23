@@ -1,4 +1,4 @@
-namespace LanguageTutor.Models
+namespace LanguageTutor.Models.Output
 {
     public class ErrorViewModel
     {
