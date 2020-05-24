@@ -2,9 +2,8 @@
 using DBContext.Models;
 using LanguageTutorService.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LanguageTutorService.Services
 {
@@ -21,8 +20,19 @@ namespace LanguageTutorService.Services
         {
             return  _postgres.TtutorAudit.Where(a => a.NameLogin == login)
                 .OrderByDescending(a => a.Time)
-                .AsNoTracking()
-                .Take(100);
+                .Take(50);
+        }
+
+        public DateTime GetLastVisit(string login)
+        {
+            return _postgres.TtutorAudit.Where(a => a.NameLogin == login).
+                OrderByDescending(x => x.Time)
+              .FirstOrDefault().Time; 
+        }
+
+        public int GetCountAnswer(string login)
+        {
+            return _postgres.TtutorAudit.Where(a => a.NameLogin == login).Count();            
         }
 
         public void AddAudit(TutorSessionModel sessionModel, InputUserAnswer userAnswer, string login)

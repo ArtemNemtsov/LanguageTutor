@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DBContext.Models.TtutorAudit>
+﻿@model LanguageTutorService.ViewModels.AccountVM
+@using DBContext.Models
 
 @{
     ViewData["Title"] = "TtutorAudit";
@@ -73,67 +74,75 @@
         </div>
     </nav>
 
-    <br />  <br />  <br />  <br />
+    <br />
+    <h2> Ваш логин: @Model.Login</h2>    <br />
+    <h4> Игра закончена: @Model.LastVisit </h4>
+    <h4> Изучено слов: @Model.CountAnswer </h4>
+    <br />
+    <h2> Последние ответы: </h2>
+    <h4>Сохранить в Excel</h4>
+    <br />
 
     <table class="table">
         <thead>
             <tr>
+                @{var audit = Model.History.FirstOrDefault(); }
                 <th>
-                    @Html.DisplayNameFor(model => model.NameLogin)
+                    @Html.DisplayNameFor(model => audit.NameLogin)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Time)
+                    @Html.DisplayNameFor(model => audit.Time)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LanguageFrom)
+                    @Html.DisplayNameFor(model => audit.LanguageFrom)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LanguageTo)
+                    @Html.DisplayNameFor(model => audit.LanguageTo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Word)
+                    @Html.DisplayNameFor(model => audit.Word)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CorrectTranslation)
+                    @Html.DisplayNameFor(model => audit.CorrectTranslation)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserTranslation)
+                    @Html.DisplayNameFor(model => audit.UserTranslation)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.IsCorrect)
+                    @Html.DisplayNameFor(model => audit.IsCorrect)
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.History)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NameLogin)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Time)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LanguageFrom)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LanguageTo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Word)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CorrectTranslation)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserTranslation)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsCorrect)
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameLogin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LanguageFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LanguageTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Word)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorrectTranslation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserTranslation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCorrect)
+                </td>
+            </tr>
             }
         </tbody>
     </table>

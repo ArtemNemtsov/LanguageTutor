@@ -48,7 +48,15 @@ namespace LanguageTutor.Controllers
 
             var history = _auditTutor.GetHistory(userLogin);
 
-            return View(await history.ToListAsync());
+            var accountVM = new AccountVM
+            {
+                History = await history.ToListAsync(),
+                Login = userLogin,
+                LastVisit = _auditTutor.GetLastVisit(userLogin),
+                CountAnswer = _auditTutor.GetCountAnswer(userLogin)
+            };
+
+            return View(accountVM);
         }
 
         [HttpGet]

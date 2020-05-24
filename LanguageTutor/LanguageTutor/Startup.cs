@@ -34,7 +34,7 @@ namespace LanguageTutor
             services.AddSession(options =>
             {
                 options.Cookie.Name = "LanguageTutor";
-                options.IdleTimeout = TimeSpan.FromMinutes(2);
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.IsEssential = true;
             });     
 
