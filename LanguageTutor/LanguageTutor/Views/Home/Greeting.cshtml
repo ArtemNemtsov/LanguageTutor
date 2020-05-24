@@ -1,16 +1,17 @@
-﻿@page
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>TutorLanguage</title>
     <meta charset="utf-8">
+    <title>TutorLanguage</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="~/js/auth.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/loginForm.css">
+
     <style>
         .img1 {
             height: 200px;
@@ -31,132 +32,127 @@
 
         .img4 {
             height: 200px;
-             background: url(/img/frc.png);
-             background-position: center;
+            background: url(/img/frc.png);
+            background-position: center;
         }
     </style>
 </head>
-<body>
-    <div class="jumbotron text-center" style="margin-bottom:0; background-color:#ced7d8 !important" align="center">
-        <h1>Изучай, путешествуй, познавай</h1>
-        <p>вместе с TutorLanguage</p>
-    </div>
-
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background-color:#316879 !important;">
-        <a class="navbar-brand" href="~../Views/home/Greeting">Главная</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <body>
+        <div class="jumbotron text-center" style="margin-bottom:0; background-color:#ced7d8 !important" align="center">
+            <h1>Изучай, путешествуй, познавай</h1>
+            <p>вместе с TutorLanguage</p>
         </div>
-    </nav>
 
-    <div class="container" style="margin-top:30px">
-        <div class="row">
-
-            <div class="col-sm-7">
-                <h2>Добавлен французкий язык</h2>
-                <h5>Май 20, 2020</h5>
-                <div class="img4" height:100%></div>
-                <p></p>
-                <p>
-                    Начиная с 20 мая 2020 года Вы можете изучать в данном Web-приложении Французкий язык. Роль французского языка в мире весьма велика. Во многих странах он является вторым государственным языком. Люди общаются на французском языке на пяти континентах: в Европе, Америке, Африке, Азии и Океании. Французкий язык занимает 12-е место по распространенности в мире, уступая английскому, испанскому, китайскому и некоторым другим языкам.
-                </p>
-                <br>
-                <h2>Добавлен немецкий язык</h2>
-                <h5>Май 19, 2020</h5>
-                <div class="img2" height:100%></div>
-                <p></p>
-                <p>
-                    Сегодня, 19 мая, вышло новое глобальное обновление для нашего любимого проекта TutorLanguage. Мы увидели, что есть много людей, которые интересуются таким иностранным языком как немецкий, и решили добавить в базу, слова из немецкого языка. Теперь вы в списке можете выбрать новый язык для изучения - Немецкий.
-                </p>
-                <br>
-                <h2>Исправлены баги</h2>
-                <h5>Май 14, 2020</h5>
-                <div class="img3"></div>
-                <p></p>
-                <p>
-                    Данное приложение только недавно вышло в свет, и в нем встречаются недочеты, которые мы стараемся убрать в ближайшее время. Кто следит за нашим проектом может заметить что мы постоянно его улучшаем. В последнем обновлении исправлено более 14 багов и обновлен дизайн, встречайте!
-                </p>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background-color:#316879 !important;">
+            <a class="navbar-brand" href="~../Views/home/Greeting">Главная</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
             </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-4">
-                <div class="container-fluid text-center">
-                    <div class="row content">
+        </nav>
 
-                        <div class="col-sm-4 text-left">
-                        </div>
+        <div class="container" style="margin-top:30px">
+            <div class="row">
 
-                        <div class="col-sm-4 sidenav">
+                <div class="col-sm-7">
+                    <h2>Добавлен французкий язык</h2>
+                    <h5>Май 20, 2020</h5>
+                    <div class="img4" height:100%></div>
+                    <p></p>
+                    <p>
+                        Начиная с 20 мая 2020 года Вы можете изучать в данном Web-приложении Французкий язык. Роль французского языка в мире весьма велика. Во многих странах он является вторым государственным языком. Люди общаются на французском языке на пяти континентах: в Европе, Америке, Африке, Азии и Океании. Французкий язык занимает 12-е место по распространенности в мире, уступая английскому, испанскому, китайскому и некоторым другим языкам.
+                    </p>
+                    <br>
+                    <h2>Добавлен немецкий язык</h2>
+                    <h5>Май 19, 2020</h5>
+                    <div class="img2" height:100%></div>
+                    <p></p>
+                    <p>
+                        Сегодня, 19 мая, вышло новое глобальное обновление для нашего любимого проекта TutorLanguage. Мы увидели, что есть много людей, которые интересуются таким иностранным языком как немецкий, и решили добавить в базу, слова из немецкого языка. Теперь вы в списке можете выбрать новый язык для изучения - Немецкий.
+                    </p>
+                    <br>
+                    <h2>Исправлены баги</h2>
+                    <h5>Май 14, 2020</h5>
+                    <div class="img3"></div>
+                    <p></p>
+                    <p>
+                        Данное приложение только недавно вышло в свет, и в нем встречаются недочеты, которые мы стараемся убрать в ближайшее время. Кто следит за нашим проектом может заметить что мы постоянно его улучшаем. В последнем обновлении исправлено более 14 багов и обновлен дизайн, встречайте!
+                    </p>
+                </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-4">
+                    <div class="container-fluid text-center">
+                        <div class="row content">
 
-                            <div class='dws-wrapper'>
-                                <div class="dws-form">
-
-                                    <input type="radio" name="tabs" id='tab-1' checked>
-                                    <label class="tab" for='tab-1' title="вкладка 1">Вход</label>
-
-                                    <input type="radio" name="tabs" id='tab-2'>
-                                    <label class="tab" for='tab-2' title="вкладка 2">Регистрация</label>
-
-                                    <span class="message"></span>
-
-                                    <form id="form-1" class='tab-form' autocomplete="off">
-                                        <div class="box-input">
-                                            <input class='input login' id='signInLogin' name="Login" type="text" required>
-                                            <label>Логин</label>
-                                        </div>
-
-                                        <div class="box-input">
-                                            <input class='input login' id='signInPassword' name="Password" type="password" required>
-                                            <label>Пароль</label>
-                                        </div>
-
-                                        <div align="center" class="alert-danger signInErrorMsg"></div>
-
-                                        <button class="login" type='button' id="signIn" disabled>Войти</button>
-
-                                    </form>
-
-                                    <form id="form-2" class='tab-form' autocomplete="off">
-                                        <div class="box-input">
-                                            <input class='input reg' id='signUpLogin' type="text" name="Login" required>
-                                            <label>Логин</label>
-                                        </div>
-                                        <div class="box-input">
-                                            <input class='input reg' id='signUpPassword' type="password" name="Password" required>
-                                            <label>Пароль</label>
-                                        </div>
-                                        <div class="box-input">
-                                            <input class='input reg' id='signUpConfirmPsw' type="password" name="ConfirmPassword" required>
-                                            <label>Подтвердите пароль</label>
-                                        </div>
-                                        <div></div>
-
-                                        <div align="center" class="alert-danger signUpErrorMsg"></div>
-                                        <button class="reg" type='button' id="signUp" disabled>Создать аккаунт</button>
-                                    </form>
-                                </div>
+                            <div class="col-sm-4 text-left">
                             </div>
 
-                        </div>
+                            <div class="col-sm-4 sidenav">
 
-                        <div class="col-sm-4 sidenav">
+                                <div class='dws-wrapper'>
+                                    <div class="dws-form">
+
+                                        <input type="radio" name="tabs" id='tab-1' checked>
+                                        <label class="tab" for='tab-1' title="вкладка 1">Вход</label>
+
+                                        <input type="radio" name="tabs" id='tab-2'>
+                                        <label class="tab" for='tab-2' title="вкладка 2">Регистрация</label>
+
+                                        <span class="message"></span>
+
+                                        <form id="form-1" class='tab-form' autocomplete="off">
+                                            <div class="box-input">
+                                                <input class='input login' id='signInLogin' name="Login" type="text" required>
+                                                <label>Логин</label>
+                                            </div>
+
+                                            <div class="box-input">
+                                                <input class='input login' id='signInPassword' name="Password" type="password" required>
+                                                <label>Пароль</label>
+                                            </div>
+
+                                            <div align="center" class="alert-danger signInErrorMsg"></div>
+
+                                            <button class="login" type='button' id="signIn" disabled>Войти</button>
+
+                                        </form>
+
+                                        <form id="form-2" class='tab-form' autocomplete="off">
+                                            <div class="box-input">
+                                                <input class='input reg' id='signUpLogin' type="text" name="Login" required>
+                                                <label>Логин</label>
+                                            </div>
+                                            <div class="box-input">
+                                                <input class='input reg' id='signUpPassword' type="password" name="Password" required>
+                                                <label>Пароль</label>
+                                            </div>
+                                            <div class="box-input">
+                                                <input class='input reg' id='signUpConfirmPsw' type="password" name="ConfirmPassword" required>
+                                                <label>Подтвердите пароль</label>
+                                            </div>
+                                            <div></div>
+
+                                            <div align="center" class="alert-danger signUpErrorMsg"></div>
+                                            <button class="reg" type='button' id="signUp" disabled>Создать аккаунт</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-4 sidenav">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br><br>
-    <div style="margin-bottom:0; background-color:#316879; height:80px;  text-align: center; color:white;">
-        <br />
-        <p>© Nemtsov Veniamin, Russia 2020</p>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="~/js/auth.js"></script>
-</body>
+        <br><br>
+        <div style="margin-bottom:0; background-color:#316879; height:80px;  text-align: center; color:white;">
+            <br />
+            <p>© Nemtsov Veniamin, Russia 2020</p>
+        </div>
+    </body>
 </html>

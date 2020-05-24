@@ -24,6 +24,9 @@ namespace LanguageTutorService
             // проверяем, что такого логина не существует
             CheckLoginExist(account);
 
+            // Првоеряем для именипароли и имени аккаунта
+            CheckLengthAccount(account);
+
             // добавляем логин в БД и сохраняем
             postgres.Add(account);
             postgres.SaveChanges();
@@ -34,6 +37,21 @@ namespace LanguageTutorService
             // если такой логин уже существуетЖ то выдаем об этом ошибку
             if( postgres.Account.Any(a => a.Login == account.Login))
                 throw new InvalidOperationException($"Данный пользователь уже существует");
+        }
+
+        private void CheckLengthAccount(Account account)
+        {
+            if (account.Login.Length >= 30)
+                throw new InvalidOperationException($"Длина логина должна быть менее 30 символов");
+
+            if (account.Password.Length >= 30)
+                throw new InvalidOperationException($"Длина пароля должна быть менее 30 символов");
+
+            if (account.Login.Length < 5)
+                throw new InvalidOperationException($"Длина логина должна быть более 5 символов");
+
+            if (account.Password.Length < 5)
+                throw new InvalidOperationException($"Длина пароля должна быть более 5 символов");
         }
 
         public void CheckAccountExist(Account account)

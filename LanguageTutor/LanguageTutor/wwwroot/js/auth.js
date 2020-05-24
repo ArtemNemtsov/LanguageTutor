@@ -35,6 +35,7 @@ $(document).ready(function () {
         }
     });
 
+
     $('input.reg').on("input", function () {
         let login = $('.reg#signUpLogin').val();
         let pass = $('.reg#signUpPassword').val();
@@ -49,8 +50,9 @@ $(document).ready(function () {
             }
         } else {
             disableOn()
-            $('.signUpErrorMsg').html('Пароли не совпадают');
+            $('.signUpErrorMsg').html(`<h5> Passwords don't match</h5>`);
         };
+
     });
 
     $('#signIn').on('click', function TrySignIn() {

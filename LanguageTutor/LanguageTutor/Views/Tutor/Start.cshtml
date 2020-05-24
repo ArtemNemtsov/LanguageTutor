@@ -67,9 +67,15 @@
         //  при нажатие кнопки Далее
         function GetNewWord()
         {
+            // блокируем кнопку далее(покаен пришло новое слово)
+            document.getElementById("idBtnNextWord").disabled = true;
+
             const userAnswer = $("#idUserAnswer").val();
+
+            // вызываем функцию, которая обновляет счет
             UpdateCount(userAnswer);
 
+            // посылаем результат на сервер и  от сервера получаем новое слово
             $.ajax({
                 type: "Post",
                 url: '/Tutor/Continue',
@@ -80,15 +86,20 @@
                     xhr.setRequestHeader("XSRF-TOKEN",
                         $('input:hidden[name="__RequestVerificationToken"]').val());
                 },
-            }).done(function (data) {
+            }).done(function (data)
+            {
                 document.getElementById('helpWord').style.visibility = "hidden";
                 document.getElementById('idGiveUpWord').style.visibility = "hidden";
 
+                // вставляем пришедшее от сервера слова
                 document.getElementById('idUserAnswer').value = "";
                 document.getElementById('currentWord').innerHTML = data.body.word;
                 document.getElementById('helpWord').innerHTML = data.body.wordHelp;
                 document.getElementById('idGiveUpWord').innerHTML = data.body.translation;
                 translation = data.body.translation;
+
+                // разблокируем кнопку далее
+                document.getElementById("idBtnNextWord").disabled = false;
             })
         }
 
