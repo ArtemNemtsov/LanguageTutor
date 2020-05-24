@@ -1,12 +1,13 @@
-﻿using LanguageTutorService;
-using LanguageTutorService.Models;
+﻿using DBContext.Connect;
+using LanguageTutorService;
 using LanguageTutorService.Services;
 using LanguageTutorService.ViewModels;
-using MediaStudioService.Core.Classes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LanguageTutor.Controllers
 {
@@ -15,13 +16,12 @@ namespace LanguageTutor.Controllers
     {
        private TopicViewModel tutorMenuModel;
        private readonly TopicService _topicService;
-       private readonly TutorService _tutorService;
+       private readonly TutorAuditService _auditTutor;
 
-
-        public TutorMenuController(TopicService topicService, TutorService tutorService)
+        public TutorMenuController(TopicService topicService, TutorAuditService auditTutor)
         {
-            _tutorService = tutorService;
             _topicService = topicService;
+            _auditTutor = auditTutor;;
         }
 
         public IActionResult Main()
@@ -39,6 +39,22 @@ namespace LanguageTutor.Controllers
             };
 
             return View(tutorMenuModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Account()
+        {
+            var userLogin = this.HttpContext.User.Identity.Name;
+
+            var history = _auditTutor.GetHistory(userLogin);
+
+            return View(await history.ToListAsync());
+        }
+
+        [HttpGet]
+        public IActionResult OurContact()
+        {
+            return View();
         }
     }
 }

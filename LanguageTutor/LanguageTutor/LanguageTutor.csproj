@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Account\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="..\..\..\..\LanguageTutor %25282%2529\LanguageTutor\LanguageTutor\LanguageTutor\Views\TutorMenu\img\" />
     <Folder Include="wwwroot\lib\" />
