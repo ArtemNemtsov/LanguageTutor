@@ -70,8 +70,13 @@
                         <a class="nav-link active" href="~/TutorMenu/AccountStatistic">Статистика</a>
                     </li>
                 </ul>
-                    <br />
-                    <h5>Статистика пользователя:</h5>
+                <br />
+                <h5>Статистика пользователя:</h5>
+
+                <form asp-controller="Account" asp-action="GetExcel">
+                    <a class="btn btn-primary" href="@Url.Action("GetExcel", "Account")">Скачать в Excel</a>
+                </form>
+
                 <div class="container">
                     <table class="table">
                         <thead>

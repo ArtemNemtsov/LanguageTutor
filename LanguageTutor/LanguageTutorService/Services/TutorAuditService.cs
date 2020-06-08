@@ -2,6 +2,7 @@
 using DBContext.Models;
 using LanguageTutorService.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LanguageTutorService.Services
@@ -20,6 +21,13 @@ namespace LanguageTutorService.Services
             return  _postgres.TtutorAudit.Where(a => a.NameLogin == login)
                 .OrderByDescending(a => a.Time)
                 .Take(50);
+        }
+
+        public IEnumerable<TtutorAudit> GetHistoryIEnumerable(string login)
+        {
+            return _postgres.TtutorAudit.Where(a => a.NameLogin == login)
+                .OrderByDescending(a => a.Time)
+                .Take(50).ToList();
         }
 
         public DateTime GetLastVisit(string login)

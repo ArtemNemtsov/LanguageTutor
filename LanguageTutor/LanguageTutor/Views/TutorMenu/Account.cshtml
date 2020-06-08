@@ -43,14 +43,22 @@
 
   $.ajax(
     {
-      url: '/Account/LoadPhoto',
+          url: '/Account/LoadPhoto',
       data: formData,
       processData: false,
       contentType: false,
       type: "POST",
       success: function (data) 
       {
+          let result = data;
+          if (result.success)
+          {
 
+          }
+          else
+          {
+              document.getElementById('SendFileResult').innerHTML = result.errorsMessage;
+          }
       }
     }
   );
@@ -124,9 +132,11 @@
 
                     <h6>Загрузите фотографию</h6>
                     <form id="form" name="form" action="/uploader" enctype="multipart/form-data" method="post">
+                        <div align="center" class="alert-danger" id="SendFileResult"></div>
+
                         <div class="buttons">
                             <div class="upload-button">
-                                <input id="files" name="files"   class="form-control-file" type="file" size="1" accept="image/x-png,image/gif,image/jpeg" multiple onchange="uploadFiles('files');" />
+                                <input id="files" name="files" class="form-control-file" type="file" size="1" accept="image/x-png,image/gif,image/jpeg" multiple onchange="uploadFiles('files');" />
                             </div>
                         </div>
                     </form>
