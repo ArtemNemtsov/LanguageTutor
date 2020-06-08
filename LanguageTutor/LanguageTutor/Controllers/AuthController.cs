@@ -15,27 +15,25 @@ namespace LanguageTutor.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly AuthService auth;
-        private readonly string cookieKey = "privatekey";
+        private readonly AccountService auth;
         private readonly LinkGenerator linkGenerator;
-        private readonly IHttpContextAccessor _accessor;
 
-        public AuthController(AuthService authService, LinkGenerator link, IHttpContextAccessor _accessor)
+        public AuthController(AccountService authService, LinkGenerator link, IHttpContextAccessor _accessor)
         {
             auth = authService;
             linkGenerator = link;
         }
 
         [HttpPost]
-        public async Task<JsonResult> SignInAsync(Account inputAcount)
+        public async Task<JsonResult> SignInAsync(Account inputAccount)
         {
             try
             {
                 // если такой аккаунт существует, то
-                auth.CheckAccountExist(inputAcount);
+                auth.CheckLoginPasswordCorrectly(inputAccount);
 
                // аутентификация
-               await Authenticate(inputAcount.Login);
+               await Authenticate(inputAccount.Login);
 
                 //создаем ссылку, и отправляем ее, чтобы потом зайти по ней
 
@@ -53,11 +51,11 @@ namespace LanguageTutor.Controllers
         }
 
         [HttpPost]
-        public JsonResult SignUp(Account newAcount)
+        public JsonResult SignUp(Account newAccount)
         {
             try
             {
-                auth.AddAccount(newAcount);
+                auth.AddAccount(newAccount);
                 return Json(RespоnceManager.CreateSucces("Аккаунт успешно добавлен!"));
             }
             catch (Exception ex)

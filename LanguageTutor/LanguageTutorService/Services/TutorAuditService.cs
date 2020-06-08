@@ -1,7 +1,6 @@
 ﻿using DBContext.Connect;
 using DBContext.Models;
 using LanguageTutorService.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 

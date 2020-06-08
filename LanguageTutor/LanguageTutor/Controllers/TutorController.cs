@@ -1,7 +1,5 @@
-﻿using LanguageTutorService;
-using LanguageTutorService.Models;
+﻿using LanguageTutorService.Models;
 using LanguageTutorService.Services;
-using LanguageTutorService.ViewModels;
 using MediaStudioService.Core.Classes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

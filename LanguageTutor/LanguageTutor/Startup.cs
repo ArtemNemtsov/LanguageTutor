@@ -38,7 +38,7 @@ namespace LanguageTutor
                 options.Cookie.IsEssential = true;
             });     
 
-            services.AddTransient<AuthService>();
+            services.AddTransient<AccountService>();
             services.AddTransient<TranslatorService>(); 
             services.AddTransient<TopicService>(); 
             services.AddTransient<TutorService>();

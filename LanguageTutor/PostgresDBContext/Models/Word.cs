@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DBContext.Models
+﻿namespace DBContext.Models
 {
     public partial class Word
     {

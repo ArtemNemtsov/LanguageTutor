@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace LanguageTutorService
 {
-    public class AuthService
+    public class AccountService
    {
         private readonly dc58kv94isevv4Context postgres;
 
-        public AuthService(dc58kv94isevv4Context postgresDB)
+        public AccountService(dc58kv94isevv4Context postgresDB)
         {
             postgres = postgresDB;
         }
@@ -24,12 +24,25 @@ namespace LanguageTutorService
             // проверяем, что такого логина не существует
             CheckLoginExist(account);
 
-            // Првоеряем для именипароли и имени аккаунта
+            // Проверяем для именипароли и имени аккаунта
             CheckLengthAccount(account);
 
             // добавляем логин в БД и сохраняем
             postgres.Add(account);
             postgres.SaveChanges();
+        }
+
+        public string ChangePassword(Account userAccount)
+        {
+            // по логину находи из БД учетку
+            var postgresAccount = postgres.Account
+                .Where(w => w.Login == userAccount.Login).FirstOrDefault();
+
+            // меняем пароль
+            postgresAccount.Password = userAccount.NewPassword;
+            postgres.SaveChanges();
+
+            return $"Пароль для логина {userAccount.Login} успешно изменен!";
         }
 
         private void CheckLoginExist(Account account)
@@ -54,7 +67,7 @@ namespace LanguageTutorService
                 throw new InvalidOperationException($"Длина пароля должна быть более 5 символов");
         }
 
-        public void CheckAccountExist(Account account)
+        public void CheckLoginPasswordCorrectly(Account account)
         {
             // если такого аккаунта нет в БД, то вызываем ошибку
             if (!postgres.Account.Any(a => a.Login == account.Login && a.Password == account.Password))

@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Tutor</title>
+    <title>Выбор языка</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -30,28 +30,56 @@
             }
         });
     </script>
+    <div class="jumbotron text-center" style="margin-bottom:0; background-color:#ced7d8 !important" align="center">
+        <h1>Изучай, путешествуй, познавай</h1>
+        <p>вместе с TutorLanguage</p>
+    </div>
 
-    <div class="jumbotron text-center" style="max-height:400px;">
-        <h1>Tutor - возможность узнать новое слово</h1>
-        <div id="demo" class="carousel slide" data-ride="carousel">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background-color:#316879 !important; max-height:300px !important;">
+
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="~/TutorMenu/Main">Главная</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="~/TutorMenu/Account">Личный кабинет</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="~/TutorMenu/SelectLang" style="color: #fff">Начать изучение</a>
+                </li>
+
+                <li class="nav-item">
+                    <a  class="nav-link" href="~/TutorMenu/OurContact">Контакты</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron text-center" style="max-height:400px; vertical-align: middle">
+        <h1>LanguageTutor - возможность узнать новое слово</h1>
+        <div id="demo" class="carousel slide" data-ride="carousel" style="vertical-align: middle !important">
 
             <!-- Indicators -->
-            <ul class="carousel-indicators">
+            <ul class="carousel-indicators" style="vertical-align: middle">
                 <li data-target="#demo" data-slide-to="0" class="active"></li>
                 <li data-target="#demo" data-slide-to="1"></li>
                 <li data-target="#demo" data-slide-to="2"></li>
             </ul>
 
             <!-- The slideshow -->
-            <div class="carousel-inner" style="max-height:300px" ;>
-                <div class="carousel-item active " style="position:center;">
-                    <img src="~/img/la.jpg" alt="Los Angeles">
+            <div class="carousel-inner" style="max-height:250px; vertical-align: middle" ;>
+                <div class="carousel-item active " style="vertical-align: middle !important;">
+                    <img src="~/img/lal.jpg" alt="Los Angeles">
                 </div>
                 <div class="carousel-item" style="position:center;">
-                    <img src="~/img/Chicago.jpg" alt="Chicago" style="align-items: center !important; justify-content: center !important;">
+                    <img src="~/img/Chic.jpg" alt="Chicago" style="vertical-align: middle !important;">
                 </div>
                 <div class="carousel-item">
-                    <img src="~/img/ny.jpg" alt="New York" style="align-items: center !important; justify-content: center !important;">
+                    <img src="~/img/nyg.jpg" alt="New York" style="vertical-align: middle !important;">
                 </div>
             </div>
 
@@ -94,9 +122,9 @@
                         <center><h3> Управление</h3></center><br />
                         <h4 id="LngOptionError" class="text-danger" style="color:aliceblue"></h4>
 
-                        <input type="button" id="idLngSudmit" class="btn btn-primary btn-block" value="Старт" />
+                        <input type="button" id="idLngSudmit" class="btn btn-primary btn-block" style="background-color:#316879; border-color:#316879" value="Старт" />
 
-                        <a class="btn btn-primary btn-block" href="~/TutorMenu/Main">
+                        <a class="btn btn-primary btn-block" style="background-color:#316879; border-color:#316879" href="~/TutorMenu/Main">
                             Назад
                         </a>
                     </div>
@@ -104,8 +132,14 @@
             </div>
         }
     </div>
-    <br /><br />
-    <div style="margin-bottom:0; background-color:#316879; height:80px;  text-align: center; color:white;">
+    <div>    <br /><br />    <br /><br /></div>
+    <div class="col-sm-12"
+         style="
+        background-color: #316879;
+        height: 80px;
+        text-align: center;
+        color: white;
+        bottom:0;">
         <br />
         <p>© Nemtsov Veniamin, Russia 2020</p>
     </div>

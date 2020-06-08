@@ -1,9 +1,4 @@
-﻿using LanguageTutor.Pages;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LanguageTutorService.Models
+﻿namespace LanguageTutorService.Models
 {
     public class TutorSessionModel
     {

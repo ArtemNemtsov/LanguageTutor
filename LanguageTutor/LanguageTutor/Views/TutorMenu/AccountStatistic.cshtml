@@ -8,16 +8,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Аккаунт</title>
+    <title>AccountStatistic</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="~/js/account.js"></script>
     <style>
-
         .img1 {
             height: 200px;
             background: url(/img/youfoto.jpg) no-repeat;
@@ -66,40 +64,83 @@
                 <br />
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="~/TutorMenu/Account">Учетная запись</a>
-
+                        <a class="nav-link" href="~/TutorMenu/Account">Общая информация</a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="~/TutorMenu/AccountStatistic">Статистика</a>
+                        <a class="nav-link active" href="~/TutorMenu/AccountStatistic">Статистика</a>
                     </li>
                 </ul>
-                <br /><br />
-                <h5>Логин:</h5> <h5 id="login">@Model.Login </h5>
-                <br />
-                <h5>Изменить пароль:</h5>
-                <form id="form-2" class='tab-form' autocomplete="off">
-                    <div class="box-input">
-                        <input class='input reg' type="password" id="oldPassword" required>
-                        <label>Текущий пароль</label>
+                    <br />
+                    <h5>Статистика пользователя:</h5>
+                <div class="container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                @{var audit = Model.History.FirstOrDefault(); }
+                                <th>
+                                    @Html.DisplayNameFor(model => audit.NameLogin)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => audit.Time)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => audit.LanguageFrom)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => audit.LanguageTo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => audit.Word)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => audit.CorrectTranslation)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => audit.UserTranslation)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => audit.IsCorrect)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.History)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NameLogin)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Time)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LanguageFrom)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LanguageTo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Word)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CorrectTranslation)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserTranslation)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsCorrect)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div style="  text-align: right; margin-right: 50px">
+                        <button type="submit" class="btn btn-primary" ;" style="background-color:#316879; border-color:#316879"> Скачать</button>
                     </div>
-                    <div class="box-input">
-                        <input class='input reg' type="password" id="newPassword" required>
-                        <label>Новый пароль</label>
-                    </div>
-                    <div align="center" class="alert-danger" id="changePassswordResult"></div>
-                    <div></div>
-
-                    <button class="reg" type='button' id="idChangePasssword">Сменить пароль</button>
-                </form>
-                <br />
-                <h5><br />Фотография пользователя:</h5>
-                <form>
-                    <div class="form-group">
-
-                        <h6>Загрузите фотографию</h6>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-                </form>
-
+                    <br /> <br /> <br />
+                </div>
 
             </div>
             <div class="col-sm-1">
@@ -128,12 +169,12 @@
                         <br /><br />
                     </li>
                 </ul>
-                <hr class="d-sm-none">
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </div>
         </div>
     </div>
-    
+
+
+    <div>    <br /><br />    <br /><br /></div>
     <div class="col-sm-12"
          style="
         background-color: #316879;

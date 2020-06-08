@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DBContext.Models
 {
@@ -9,5 +9,9 @@ namespace DBContext.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public DateTime? DateRegistration { get; set; }
+
+        [NotMapped]
+        public string NewPassword { get; set; }
+
     }
 }

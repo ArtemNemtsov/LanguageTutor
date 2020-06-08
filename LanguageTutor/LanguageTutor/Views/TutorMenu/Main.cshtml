@@ -1,7 +1,5 @@
-﻿@page
-@{
-    Layout = null;
-}
+﻿@model LanguageTutorService.ViewModels.AccountVM
+@using DBContext.Models
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +12,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
+
         .img1 {
             height: 200px;
-            background: url(/img/foto.jpg) no-repeat;
-            background-size: 100% auto ;
+            background: url(/img/youfoto.jpg) no-repeat;
+            background-size: 100% auto;
             background-position: center;
-            background-color:#f47a60;
-            border-bottom:3px;
+            background-color: #f47a60;
+            border-bottom: 3px;
             border-radius: 10px;
         }
 
@@ -36,8 +35,8 @@
 
         .img4 {
             height: 200px;
-             background: url(/img/frc.png);
-             background-position: center;
+            background: url(/img/frc.png);
+            background-position: center;
         }
     </style>
 </head>
@@ -52,7 +51,7 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item">
-                    <a  style="color: #fff" class="nav-link" href="~/TutorMenu/Main">Главная</a>
+                    <a style="color: #fff" class="nav-link" href="~/TutorMenu/Main">Главная</a>
                 </li>
 
                 <li class="nav-item">
@@ -106,41 +105,46 @@
             <div class="col-sm-4" style="background-color:#ced7d8; ">
                 <br /><br /><br />
                 <div class="img1"></div>
-                <h2 style="margin-bottom:0" align="center">Немцов Вениамин</h2>          <br /><br />
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" style="background-color:#316879" href="~/TutorMenu/SelectLang"align="center"><br>Начать изучение<br><br></a>
-                    </li>
-                </ul>
                 <br />
-
-                <p>
+                <div align="center">
+                    <h4>@Model.Login</h4>
                     <br />
-                    Количество слов за последнюю неделю: 2455
-                    <br /><br />
-                    Дата регистрации: Март 20, 2020
-                    <br /><br />
-                    Рейтинг на сайте: 3
+                    <h6>Последняя ссесия: @Model.LastVisit</h6>
+                    <h6>Рейтинг на сайте: 3</h6>
+                    <h6>Изучено слов: @Model.CountAnswer</h6>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <br />
+                            <a class="nav-link active" style="background-color:#316879" href="~/TutorMenu/SelectLang" align="center"><br>Начать изучение<br><br></a>
+                        </li>
+                    </ul>
                     <br />
-                </p>
 
-                <br><br>
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" style="background-color:#316879" href="~/TutorMenu/Account" align="center">Личный кабинет<br></a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
-                        <a class="nav-link active" style="background-color:#316879" href="~/Home/Greeting" align="center">Выйти<br></a>
-                    </li>
 
-                </ul>
-                <hr class="d-sm-none">
+                    <br><br>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" style="background-color:#316879" href="~/TutorMenu/Account" align="center">Личный кабинет<br></a>
+                        </li>
+                        <br>
+                        <li class="nav-item">
+                            <a class="nav-link active" style="background-color:#316879" href="~/Home/Greeting" align="center">Выйти<br></a>
+                        </li>
+
+                    </ul>
+                    <hr class="d-sm-none">
+                </div>
             </div>
         </div>
-    </div>
 
-    <div style="margin-bottom:0; background-color:#316879; height:80px;  text-align: center; color:white;">
+    </div>
+    <div class="col-sm-12"
+         style="
+        background-color: #316879;
+        height: 80px;
+        text-align: center;
+        color: white;
+        bottom:0;">
         <br />
         <p>© Nemtsov Veniamin, Russia 2020</p>
     </div>
