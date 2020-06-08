@@ -3,8 +3,12 @@ using LanguageTutorService;
 using LanguageTutorService.Services;
 using MediaStudioService.Core.Classes;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace LanguageTutor.Controllers
 {
@@ -20,6 +24,14 @@ namespace LanguageTutor.Controllers
             _accountService = accountService;
 
         }
+
+        public IActionResult LoadPhoto(IFormFile files)
+        {
+            var r = files;
+
+            return Ok(new { r.FileName });
+        }
+
 
         [HttpPost]
         public JsonResult ChangePassword(Account account)
