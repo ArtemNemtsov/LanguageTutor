@@ -111,26 +111,27 @@
                 <h5>Логин:</h5> <h5 id="login">@Model.Login </h5>
                 <br />
                 <h5>Изменить пароль:</h5>
-                <form id="form-2" class='tab-form' autocomplete="off">
-                    <div class="box-input">
-                        <input  type="password"  class="form-control" id="oldPassword" required>
-                        <label>Текущий пароль</label>
+
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Введите старый пароль</label>
+                        <input type="password" class="form-control" id="oldPassword" aria-describedby="emailHelp" placeholder="Старый пароль">
                     </div>
-                    <div class="box-input">
-                        <input class='input reg' type="password" id="newPassword" required>
-                        <label>Новый пароль</label>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Введите новый пароль</label>
+                        <input type="password" class="form-control" id="newPassword" placeholder="Новый пароль">
                     </div>
                     <div align="center" class="alert-danger" id="changePassswordResult"></div>
-                    <div></div>
-
-                    <button class="reg" type='button' id="idChangePasssword">Сменить пароль</button>
+                    <button type="submit" class="btn btn-primary" id="idChangePasssword" style="border-color:#316879; background-color:#316879">Сменить пароль</button>
                 </form>
+
+
                 <br />
                 <h5><br />Фотография пользователя:</h5>
 
                 <div class="form-group">
 
-                    <h6>Загрузите фотографию</h6>
+                    <h6>Загрузите фотографию в формате .jpg/.jpeg/.png/.gif, размером не больше 34мб.</h6>
                     <form id="form" name="form" action="/uploader" enctype="multipart/form-data" method="post">
                         <div align="center" class="alert-danger" id="SendFileResult"></div>
 

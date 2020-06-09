@@ -73,9 +73,7 @@
                 <br />
                 <h5>Статистика пользователя:</h5>
 
-                <form asp-controller="Account" asp-action="GetExcel">
-                    <a class="btn btn-primary" href="@Url.Action("GetExcel", "Account")">Скачать в Excel</a>
-                </form>
+
 
                 <div class="container">
                     <table class="table">
@@ -141,10 +139,9 @@
                             }
                         </tbody>
                     </table>
-                    <div style="  text-align: right; margin-right: 50px">
-                        <button type="submit" class="btn btn-primary" ;" style="background-color:#316879; border-color:#316879"> Скачать</button>
-                    </div>
-                    <br /> <br /> <br />
+                    <form asp-controller="Account" asp-action="GetExcel" Style="text-align: right; margin-right:10px">
+                        <a class="btn btn-primary" href="@Url.Action("GetExcel", "Account")" style="border-color:#316879; background-color:#316879">Скачать в Excel</a>
+                    </form><br /><br /><br /><br />
                 </div>
 
             </div>
@@ -177,9 +174,6 @@
             </div>
         </div>
     </div>
-
-
-    <div>    <br /><br />    <br /><br /></div>
     <div class="col-sm-12"
          style="
         background-color: #316879;

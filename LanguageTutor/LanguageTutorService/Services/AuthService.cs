@@ -71,7 +71,7 @@ namespace LanguageTutorService
         {
             // если такого аккаунта нет в БД, то вызываем ошибку
             if (!postgres.Account.Any(a => a.Login == account.Login && a.Password == account.Password))
-                throw new InvalidOperationException($"Неверный логин или пароль");
+                throw new InvalidOperationException($"Введеные данные неверны");
         }
     }
 }
