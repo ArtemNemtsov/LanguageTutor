@@ -1,5 +1,6 @@
 ﻿using DBContext.Connect;
 using DBContext.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +17,7 @@ namespace LanguageTutorService
 
         public List<Topic>GetTopics()
         {
-            return postgres.Topic.ToList();
+            return postgres.Topic.AsNoTracking().ToList();
         }
 
     }

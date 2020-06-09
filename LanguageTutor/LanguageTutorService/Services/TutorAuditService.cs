@@ -29,23 +29,40 @@ namespace LanguageTutorService.Services
             {
                 History = history,
                 Login = userLogin,
-                LastVisit = GetLastVisit(userLogin),
+                LastVisit = GetLastVisitAsync(userLogin).Result,
                 CountAnswer = GetCountAnswer(userLogin),
 
                 // если история не пустая, строим рейтинг, иначе реитинг 0
-                Reiting = history == null ? 0 : GetReiting(history),
+                Reiting = GetReiting(userLogin),
             };
         }
-        public double GetReiting(List<TtutorAudit> history)
+
+        public async Task<AccountVM> GetMainViewModel(string userLogin)
         {
-            double countWord = history.Count;
-            double countRight = history.Where(w => w.IsCorrect).ToList().Count;
+            // создаем экземпляр класса и помещаем туда данные
+            return new AccountVM
+            {
+                Login = userLogin,
+                LastVisit = GetLastVisitAsync(userLogin).Result,
+                CountAnswer = GetCountAnswer(userLogin),
+                // если история не пустая, строим рейтинг, иначе реитинг 0
+                Reiting = GetReiting(userLogin),
+            };
+        }
+
+        public double GetReiting(string login)
+        {
+            double countAllAnswer = _postgres.TtutorAudit.AsNoTracking()
+                .Where(a => a.NameLogin == login ).Count();
+
+            double countRight = _postgres.TtutorAudit.AsNoTracking()
+                .Where(a => a.NameLogin == login && a.IsCorrect == true).Count();
 
             // если есть отвеченные слова, то считаем рейтин, иначе 0
-            if (countWord > 0 && countRight > 0)
+            if (countAllAnswer > 0 && countRight > 0)
             {
                 // количество верных слов делим на общее количество
-                double reiting = countRight / countWord;
+                double reiting = countRight / countAllAnswer;
 
                 //округляем до 2 чисел
                 return Math.Round(reiting, 2);
@@ -53,18 +70,22 @@ namespace LanguageTutorService.Services
             else return 0;
         }
 
+
         public IQueryable<TtutorAudit> GetHistory(string login)
         {
-            return  _postgres.TtutorAudit.Where(a => a.NameLogin == login)
+            return  _postgres.TtutorAudit
+                .Where(a => a.NameLogin == login)
+                .AsNoTracking()
                 .OrderByDescending(a => a.Time)
-                .Take(50);
+                .Take(20);
         }
 
         public IEnumerable<ExcelTutorHistory> GetHistoryForExcel(string login)
         {
             return _postgres.TtutorAudit.Where(a => a.NameLogin == login)
                 .OrderByDescending(a => a.Time)
-                .Take(50)
+                .AsNoTracking()
+                .Take(20)
                 .Select(s => new ExcelTutorHistory 
                 {
                     Логин = s.NameLogin,
@@ -82,12 +103,13 @@ namespace LanguageTutorService.Services
                 .ToList();
         }
 
-        public DateTime GetLastVisit(string login)
+        public async Task<DateTime> GetLastVisitAsync(string login)
         {
-            var result  = _postgres.TtutorAudit
-               .Where(a => a.NameLogin == login).
-                OrderByDescending(x => x.Time)
-              .FirstOrDefault();
+            var result  = await _postgres.TtutorAudit
+               .Where(a => a.NameLogin == login)
+               .AsNoTracking()
+               .OrderByDescending(x => x.Time)
+              .FirstOrDefaultAsync();
 
             return result == null
                 ? DateTime.Now
@@ -96,7 +118,10 @@ namespace LanguageTutorService.Services
 
         public int GetCountAnswer(string login)
         {
-            return _postgres.TtutorAudit.Where(a => a.NameLogin == login).Count();            
+            return _postgres.TtutorAudit
+                .AsNoTracking()
+                .Where(a => a.NameLogin == login)
+                .Count();            
         }
 
         public void AddAudit(TutorSessionModel sessionModel, InputUserAnswer userAnswer, string login)

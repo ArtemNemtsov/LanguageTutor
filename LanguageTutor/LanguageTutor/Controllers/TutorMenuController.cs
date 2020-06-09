@@ -30,14 +30,14 @@ namespace LanguageTutor.Controllers
         {
             // из запроса получаем логин
             var userLogin = this.HttpContext.User.Identity.Name;
-            var result = _auditTutor.GetAccountViewModel(userLogin).Result;
+            var result = _auditTutor.GetMainViewModel(userLogin).Result;
 
             // во вьюху передаем созданный класс с данными
             return View(result);
         }
 
 
-        
+        [HttpGet]
         public IActionResult SelectLang()
         {
             var topics = _topicService.GetTopics();
