@@ -109,16 +109,18 @@ namespace LanguageTutor.Controllers
         {
             try
             {
+                // из запроса получаем логин
+                var userLogin = this.HttpContext.User.Identity.Name;
+
                 // проверяем что пришел именно файл изображение
-                CheckValidImageType(files);
+                CheckValidImageType(files);            
 
-                using (var memoryStream = new MemoryStream())
-                {
-                    using var img = Image.FromStream(memoryStream);
-                    // TODO: ResizeImage(img, 100, 100);
-                }
+                // обновляем фото в БД
+                _accountService.UpdatePhoto(files, userLogin);
 
-                return Json(RespоnceManager.CreateSucces("Фото успешно загружено!"));
+                var result = _auditTutor.GetAccountViewModel(userLogin).Result;
+
+                return View("~/Views/TutorMenu/Account.cshtml", result);
             }
             catch (Exception ex)
             {

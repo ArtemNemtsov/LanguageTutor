@@ -51,14 +51,8 @@
       success: function (data) 
       {
           let result = data;
-          if (result.success)
-          {
-
-          }
-          else
-          {
-              document.getElementById('SendFileResult').innerHTML = result.errorsMessage;
-          }
+          ocument.getElementById('SendFileResult').innerHTML = result.errorsMessage;
+    
       }
     }
   );

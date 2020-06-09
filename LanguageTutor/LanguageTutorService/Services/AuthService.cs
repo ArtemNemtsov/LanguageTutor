@@ -1,6 +1,8 @@
 ﻿using DBContext.Connect;
 using DBContext.Models;
+using Microsoft.AspNetCore.Http;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace LanguageTutorService
@@ -32,6 +34,37 @@ namespace LanguageTutorService
             postgres.SaveChanges();
         }
 
+
+        public void UpdatePhoto(IFormFile formFile, string login)
+        {
+            byte[] newPhoto = null; ;
+            if (formFile.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    formFile.CopyTo(ms);
+                    newPhoto = ms.ToArray();
+
+                    var account = postgres.Account.Where(w => w.Login == login).FirstOrDefault();
+                    account.Photo = newPhoto;
+                    postgres.Update(account);
+                    postgres.SaveChanges();
+                }
+            }
+        }
+
+        public void GetPhoto(Account account)
+        {
+            // проверяем, что такого логина не существует
+            CheckLoginExist(account);
+
+            // Проверяем для именипароли и имени аккаунта
+            CheckLengthAccount(account);
+
+            // добавляем логин в БД и сохраняем
+            postgres.Add(account);
+            postgres.SaveChanges();
+        }
         public string ChangePassword(Account userAccount)
         {
             // по логину находи из БД учетку

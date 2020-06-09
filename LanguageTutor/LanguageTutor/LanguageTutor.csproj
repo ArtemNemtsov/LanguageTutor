@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Account\**" />
+    <Content Remove="Views\Account\**" />
+    <EmbeddedResource Remove="Views\Account\**" />
+    <None Remove="Views\Account\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.95.2" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.11.0" />
     <PackageReference Include="DocumentFormat.OpenXml.DotNet.Core" Version="1.0.1" />
@@ -28,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="..\..\..\..\LanguageTutor %25282%2529\LanguageTutor\LanguageTutor\LanguageTutor\Views\TutorMenu\img\" />
     <Folder Include="wwwroot\lib\" />

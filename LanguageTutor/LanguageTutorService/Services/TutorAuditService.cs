@@ -37,6 +37,13 @@ namespace LanguageTutorService.Services
             };
         }
 
+        private byte[] GetPhoto(string login)
+        {
+            return _postgres.Account.AsNoTracking()
+                .Where(w => w.Login == login)
+                .Select(s => s.Photo).FirstOrDefault();
+        }
+
         public async Task<AccountVM> GetMainViewModel(string userLogin)
         {
             // создаем экземпляр класса и помещаем туда данные
