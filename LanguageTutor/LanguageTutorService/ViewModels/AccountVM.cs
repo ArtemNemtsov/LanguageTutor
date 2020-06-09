@@ -9,6 +9,7 @@ namespace LanguageTutorService.ViewModels
         public IEnumerable<TtutorAudit> History { get; set; }
         public string Login { get; set; }
         public int CountAnswer { get; set; }
+        public double Reiting { get; set; }
         public DateTime LastVisit { get; set; }
     }
 }

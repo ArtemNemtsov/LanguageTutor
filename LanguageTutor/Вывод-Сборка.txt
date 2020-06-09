@@ -1,0 +1,67 @@
+﻿1>------ Сборка начата: проект: DBContext, Конфигурация: Release Any CPU ------
+1>Connect\dc58kv94isevv4Context.cs(26,10,26,214): warning CS1030: #warning: "To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.'
+1>DBContext -> D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\PostgresDBContext\bin\Release\netcoreapp3.0\DBContext.dll
+1>Сборка проекта "DBContext.csproj" завершена.
+2>------ Сборка начата: проект: LanguageTutorService, Конфигурация: Release Any CPU ------
+2>LanguageTutorService -> D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutorService\bin\Release\netcoreapp3.0\LanguageTutorService.dll
+3>------ Сборка начата: проект: LanguageTutor, Конфигурация: Release Any CPU ------
+3>D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\LanguageTutor.csproj : warning NU1701: Пакет "DocumentFormat.OpenXmlSDK 2.0.0" был восстановлен с помощью ".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8", а не целевой платформы проекта ".NETCoreApp,Version=v3.0". Этот пакет может быть не полностью совместим с вашим проектом.
+3>D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\LanguageTutor.csproj : warning NU1701: Пакет "Microsoft.VisualStudio.Web.CodeGeneration.Design 3.1.2" был восстановлен с помощью ".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8", а не целевой платформы проекта ".NETCoreApp,Version=v3.0". Этот пакет может быть не полностью совместим с вашим проектом.
+3>LanguageTutor -> D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\bin\Release\netcoreapp3.0\LanguageTutor.dll
+3>LanguageTutor -> D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\bin\Release\netcoreapp3.0\LanguageTutor.Views.dll
+3>Сборка проекта "LanguageTutor.csproj" завершена.
+4>------ Начало публикации: проект: LanguageTutor, Конфигурация: Release Any CPU ------
+D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\LanguageTutor.csproj(0,0): Предупреждение NU1701: Пакет "DocumentFormat.OpenXmlSDK 2.0.0" был восстановлен с помощью ".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8", а не целевой платформы проекта ".NETCoreApp,Version=v3.0". Этот пакет может быть не полностью совместим с вашим проектом.
+D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\LanguageTutor.csproj(0,0): Предупреждение NU1701: Пакет "Microsoft.VisualStudio.Web.CodeGeneration.Design 3.1.2" был восстановлен с помощью ".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8", а не целевой платформы проекта ".NETCoreApp,Version=v3.0". Этот пакет может быть не полностью совместим с вашим проектом.
+LanguageTutor -> D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\bin\Release\netcoreapp3.0\LanguageTutor.dll
+LanguageTutor -> D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\bin\Release\netcoreapp3.0\LanguageTutor.Views.dll
+LanguageTutor -> D:\Git\MyOwnProject\LanguageTutor\LanguageTutor\LanguageTutor\obj\Release\netcoreapp3.0\PubTmp\Out\
+Добавляется каталог (languagetutor.ru\runtimes).
+Добавляется каталог (languagetutor.ru\runtimes\unix).
+Добавляется каталог (languagetutor.ru\runtimes\unix\lib).
+Добавляется каталог (languagetutor.ru\runtimes\unix\lib\netcoreapp2.0).
+Добавляется каталог (languagetutor.ru\runtimes\win).
+Добавляется каталог (languagetutor.ru\runtimes\win\lib).
+Добавляется каталог (languagetutor.ru\runtimes\win\lib\netcoreapp2.0).
+Добавляется каталог (languagetutor.ru\runtimes\win\lib\netcoreapp2.1).
+Обновляется файл (languagetutor.ru\appsettings.Development.json).
+Обновляется файл (languagetutor.ru\appsettings.json).
+Обновляется файл (languagetutor.ru\appsettings.production.json).
+Обновляется файл (languagetutor.ru\DBContext.dll).
+Обновляется файл (languagetutor.ru\DBContext.pdb).
+Обновляется файл (languagetutor.ru\DocumentFormat.OpenXml.dll).
+Добавляется файл (languagetutor.ru\Fingers10.ExcelExport.dll).
+Обновляется файл (languagetutor.ru\LanguageTutor.deps.json).
+Обновляется файл (languagetutor.ru\LanguageTutor.dll).
+Обновляется файл (languagetutor.ru\LanguageTutor.exe).
+Обновляется файл (languagetutor.ru\LanguageTutor.pdb).
+Обновляется файл (languagetutor.ru\LanguageTutor.runtimeconfig.json).
+Обновляется файл (languagetutor.ru\LanguageTutor.Views.dll).
+Обновляется файл (languagetutor.ru\LanguageTutor.Views.pdb).
+Обновляется файл (languagetutor.ru\LanguageTutorService.dll).
+Обновляется файл (languagetutor.ru\LanguageTutorService.pdb).
+Обновляется файл (languagetutor.ru\Microsoft.Win32.SystemEvents.dll).
+Добавляется файл (languagetutor.ru\runtimes\unix\lib\netcoreapp2.0\System.Drawing.Common.dll).
+Добавляется файл (languagetutor.ru\runtimes\win\lib\netcoreapp2.0\Microsoft.Win32.SystemEvents.dll).
+Добавляется файл (languagetutor.ru\runtimes\win\lib\netcoreapp2.0\System.Drawing.Common.dll).
+Добавляется файл (languagetutor.ru\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll).
+Обновляется файл (languagetutor.ru\System.Drawing.Common.dll).
+Обновляется файл (languagetutor.ru\System.IO.Packaging.dll).
+Обновляется файл (languagetutor.ru\System.Security.Cryptography.Pkcs.dll).
+Обновляется файл (languagetutor.ru\web.config).
+Обновляется файл (languagetutor.ru\wwwroot\css\loginForm.css).
+Обновляется файл (languagetutor.ru\wwwroot\favicon.ico).
+Добавляется файл (languagetutor.ru\wwwroot\img\chic.jpg).
+Обновляется файл (languagetutor.ru\wwwroot\img\cod.png).
+Обновляется файл (languagetutor.ru\wwwroot\img\frc.png).
+Обновляется файл (languagetutor.ru\wwwroot\img\ger.png).
+Добавляется файл (languagetutor.ru\wwwroot\img\lal.jpg).
+Добавляется файл (languagetutor.ru\wwwroot\img\nyg.jpg).
+Обновляется файл (languagetutor.ru\wwwroot\img\sea.jpg).
+Добавляется файл (languagetutor.ru\wwwroot\img\youfoto.jpg).
+Добавляется файл (languagetutor.ru\wwwroot\js\account.js).
+Обновляется файл (languagetutor.ru\wwwroot\js\auth.js).
+Publish Succeeded.
+
+========== Сборка: успешно: 3, с ошибками: 0, без изменений: 0, пропущено: 0 ==========
+========== Публикация: успешно: 1, с ошибками: 0, пропущено: 0 ==========

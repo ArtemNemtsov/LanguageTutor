@@ -2,9 +2,12 @@
 using DBContext.Models;
 using LanguageTutor.Controllers;
 using LanguageTutorService.Models;
+using LanguageTutorService.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LanguageTutorService.Services
 {
@@ -15,6 +18,39 @@ namespace LanguageTutorService.Services
         public TutorAuditService(dc58kv94isevv4Context postgres)
         {
             _postgres = postgres;
+        }
+
+        public async Task<AccountVM> GetAccountViewModel(string userLogin)
+        {
+            var history = await GetHistory(userLogin).ToListAsync();
+
+            // создаем экземпляр класса и помещаем туда данные
+            return new AccountVM
+            {
+                History = history,
+                Login = userLogin,
+                LastVisit = GetLastVisit(userLogin),
+                CountAnswer = GetCountAnswer(userLogin),
+
+                // если история не пустая, строим рейтинг, иначе реитинг 0
+                Reiting = history == null ? 0 : GetReiting(history),
+            };
+        }
+        public double GetReiting(List<TtutorAudit> history)
+        {
+            double countWord = history.Count;
+            double countRight = history.Where(w => w.IsCorrect).ToList().Count;
+
+            // если есть отвеченные слова, то считаем рейтин, иначе 0
+            if (countWord > 0 && countRight > 0)
+            {
+                // количество верных слов делим на общее количество
+                double reiting = countRight / countWord;
+
+                //округляем до 2 чисел
+                return Math.Round(reiting, 2);
+            }
+            else return 0;
         }
 
         public IQueryable<TtutorAudit> GetHistory(string login)
@@ -48,9 +84,14 @@ namespace LanguageTutorService.Services
 
         public DateTime GetLastVisit(string login)
         {
-            return _postgres.TtutorAudit.Where(a => a.NameLogin == login).
+            var result  = _postgres.TtutorAudit
+               .Where(a => a.NameLogin == login).
                 OrderByDescending(x => x.Time)
-              .FirstOrDefault().Time; 
+              .FirstOrDefault();
+
+            return result == null
+                ? DateTime.Now
+                : result.Time;
         }
 
         public int GetCountAnswer(string login)

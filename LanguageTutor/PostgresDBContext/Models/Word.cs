@@ -1,4 +1,7 @@
-﻿namespace DBContext.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBContext.Models
 {
     public partial class Word
     {

@@ -30,7 +30,7 @@ namespace LanguageTutor.Controllers
             try
             {
                 // если такой аккаунт существует, то
-                auth.CheckLoginPasswordCorrectly(inputAccount);
+                auth.CheckAccountExist(inputAccount);
 
                // аутентификация
                await Authenticate(inputAccount.Login);

@@ -1,10 +1,13 @@
-﻿using LanguageTutorService;
+﻿using DBContext.Models;
+using LanguageTutorService;
 using LanguageTutorService.Services;
 using LanguageTutorService.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace LanguageTutor.Controllers
@@ -22,26 +25,18 @@ namespace LanguageTutor.Controllers
             _auditTutor = auditTutor;;
         }
 
+
         public async Task<IActionResult> Main()
         {
             // из запроса получаем логин
             var userLogin = this.HttpContext.User.Identity.Name;
-
-            // из БД загружаем статистику для данного логина
-            var history = _auditTutor.GetHistory(userLogin);
-
-            // создаем экземпляр класса и помещаем туда данные
-            var accountVM = new AccountVM
-            {
-                History = await history.ToListAsync(),
-                Login = userLogin,
-                LastVisit = _auditTutor.GetLastVisit(userLogin),
-                CountAnswer = _auditTutor.GetCountAnswer(userLogin)
-            };
+            var result = _auditTutor.GetAccountViewModel(userLogin).Result;
 
             // во вьюху передаем созданный класс с данными
-            return View(accountVM);
+            return View(result);
         }
+
+
         
         public IActionResult SelectLang()
         {
@@ -59,18 +54,10 @@ namespace LanguageTutor.Controllers
         public async Task<IActionResult> Account()
         {
             var userLogin = this.HttpContext.User.Identity.Name;
+            var result = _auditTutor.GetAccountViewModel(userLogin).Result;
 
-            var history = _auditTutor.GetHistory(userLogin);
-
-            var accountVM = new AccountVM
-            {
-                History = await history.ToListAsync(),
-                Login = userLogin,
-                LastVisit = _auditTutor.GetLastVisit(userLogin),
-                CountAnswer = _auditTutor.GetCountAnswer(userLogin)
-            };
-
-            return View(accountVM);
+            // во вьюху передаем созданный класс с данными
+            return View(result);
         }
 
 
@@ -78,18 +65,10 @@ namespace LanguageTutor.Controllers
         public async Task<IActionResult> AccountStatistic()
         {
             var userLogin = this.HttpContext.User.Identity.Name;
+            var result = _auditTutor.GetAccountViewModel(userLogin).Result;
 
-            var history = _auditTutor.GetHistory(userLogin);
-
-            var accountVM = new AccountVM
-            {
-                History = await history.ToListAsync(),
-                Login = userLogin,
-                LastVisit = _auditTutor.GetLastVisit(userLogin),
-                CountAnswer = _auditTutor.GetCountAnswer(userLogin)
-            };
-
-            return View(accountVM);
+            // во вьюху передаем созданный класс с данными
+            return View(result);
         }
 
         [HttpGet]

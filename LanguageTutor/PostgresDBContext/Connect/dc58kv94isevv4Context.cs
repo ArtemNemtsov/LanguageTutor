@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using DBContext.Models;
 
 namespace DBContext.Connect
@@ -46,11 +48,15 @@ namespace DBContext.Connect
 
                 entity.Property(e => e.Login)
                     .IsRequired()
-                    .HasColumnName("login");
+                    .HasColumnName("login")
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasColumnName("password");
+                    .HasColumnName("password")
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.Photo).HasColumnName("photo");
             });
 
             modelBuilder.Entity<Topic>(entity =>
@@ -80,6 +86,9 @@ namespace DBContext.Connect
 
                 entity.ToTable("ttutor_audit", "tutor");
 
+                entity.HasIndex(e => e.NameLogin)
+                    .HasName("ttutor_audit_idx");
+
                 entity.Property(e => e.IdTutorAudit).HasColumnName("id_tutor_audit");
 
                 entity.Property(e => e.CorrectTranslation)
@@ -102,7 +111,7 @@ namespace DBContext.Connect
                 entity.Property(e => e.NameLogin)
                     .IsRequired()
                     .HasColumnName("name_login")
-                    .HasMaxLength(70);
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.Time)
                     .HasColumnName("time")

@@ -167,7 +167,7 @@ namespace LanguageTutor.Controllers
                 account.Login = login;
 
                  // проверяем что логин и пароль верны
-                _accountService.CheckLoginPasswordCorrectly(account);
+                _accountService.CheckPasswordCorrect(account);
 
                 // меняем пароль
                  var result =_accountService.ChangePassword(account);

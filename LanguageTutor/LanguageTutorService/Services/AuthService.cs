@@ -67,11 +67,18 @@ namespace LanguageTutorService
                 throw new InvalidOperationException($"Длина пароля должна быть более 5 символов");
         }
 
-        public void CheckLoginPasswordCorrectly(Account account)
+        public void CheckAccountExist(Account account)
         {
             // если такого аккаунта нет в БД, то вызываем ошибку
             if (!postgres.Account.Any(a => a.Login == account.Login && a.Password == account.Password))
-                throw new InvalidOperationException($"Введеные данные неверны");
+                throw new InvalidOperationException($"Аккаунт с таким логином и паролем не существует!");
+        }
+
+        public void CheckPasswordCorrect(Account account)
+        {
+            // если такого аккаунта нет в БД, то вызываем ошибку
+            if (!postgres.Account.Any(a => a.Login == account.Login && a.Password == account.Password))
+                throw new InvalidOperationException($"Введите верный пароль!");
         }
     }
 }
