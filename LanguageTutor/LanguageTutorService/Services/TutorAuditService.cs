@@ -1,5 +1,6 @@
 ﻿using DBContext.Connect;
 using DBContext.Models;
+using LanguageTutor.Controllers;
 using LanguageTutorService.Models;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,26 @@ namespace LanguageTutorService.Services
                 .Take(50);
         }
 
-        public IEnumerable<TtutorAudit> GetHistoryIEnumerable(string login)
+        public IEnumerable<ExcelTutorHistory> GetHistoryForExcel(string login)
         {
             return _postgres.TtutorAudit.Where(a => a.NameLogin == login)
                 .OrderByDescending(a => a.Time)
-                .Take(50).ToList();
+                .Take(50)
+                .Select(s => new ExcelTutorHistory 
+                {
+                    Логин = s.NameLogin,
+                    С = s.LanguageFrom,
+                    На = s.LanguageTo,
+                    Слово  = s.Word,
+                    Правильный_ответ = s.CorrectTranslation,
+                    Ваш_ответ = s.UserTranslation,
+                    Вердикт = s.IsCorrect 
+                    ? "Верно"
+                    : "Неверно",
+                    Время = s.Time,
+
+                })
+                .ToList();
         }
 
         public DateTime GetLastVisit(string login)

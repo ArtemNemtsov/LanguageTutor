@@ -1,4 +1,7 @@
 ﻿using DBContext.Models;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Fingers10.ExcelExport.ActionResults;
 using LanguageTutorService;
 using LanguageTutorService.Services;
@@ -7,8 +10,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -30,15 +35,74 @@ namespace LanguageTutor.Controllers
 
         }
 
-        public async Task<IActionResult> GetExcel()
+        public FileResult GetExcel()
         {
             // из запроса получаем логин
             var userLogin = this.HttpContext.User.Identity.Name;
 
             // из БД загружаем статистику для данного логина
-            var history = _auditTutor.GetHistoryIEnumerable(userLogin);
+            var history = _auditTutor.GetHistoryForExcel(userLogin);
 
-            return new ExcelResult<TtutorAudit>(history, "Статистика", $"{userLogin} TutorLanguage");
+            // Lets converts our object data to Datatable for a simplified logic.
+            // Datatable is most easy way to deal with complex datatypes for easy reading and formatting. 
+            DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(history), (typeof(DataTable)));
+
+            SpreadsheetDocument document;
+            MemoryStream stream = new MemoryStream();
+            using (document = SpreadsheetDocument.Create(stream, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                var sheetData = new SheetData();
+                worksheetPart.Worksheet = new Worksheet(sheetData);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "История ответов" };
+
+                sheets.Append(sheet);
+
+                Row headerRow = new Row();
+
+                List<String> columns = new List<string>();
+                foreach (DataColumn column in table.Columns)
+                {
+                    columns.Add(column.ColumnName);
+
+                    Cell cell = new Cell
+                    {
+                        DataType = CellValues.String,
+                        CellValue = new CellValue(column.ColumnName)
+                    };
+
+                    headerRow.AppendChild(cell);
+                }
+
+                sheetData.AppendChild(headerRow);
+
+                foreach (DataRow dsrow in table.Rows)
+                {
+                    Row newRow = new Row();
+                    foreach (String col in columns)
+                    {
+                        Cell cell = new Cell
+                        {
+                            DataType = CellValues.String,
+                            CellValue = new CellValue(dsrow[col].ToString())
+                        };
+                        newRow.AppendChild(cell);
+                    }
+
+                    sheetData.AppendChild(newRow);
+                }
+
+                workbookPart.Workbook.Save();
+                document.Close();
+            }
+
+
+            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"LanguageTutor {userLogin}.xlsx");
         }
 
         public IActionResult LoadPhoto(IFormFile files)
