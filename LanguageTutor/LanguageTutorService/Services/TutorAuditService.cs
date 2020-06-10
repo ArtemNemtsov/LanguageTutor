@@ -34,14 +34,25 @@ namespace LanguageTutorService.Services
 
                 // если история не пустая, строим рейтинг, иначе реитинг 0
                 Reiting = GetReiting(userLogin),
+                Photo = GetPhoto(userLogin),
             };
         }
 
-        private byte[] GetPhoto(string login)
+        private string GetPhoto(string login)
         {
-            return _postgres.Account.AsNoTracking()
+            var resultSearch =  _postgres.Account.AsNoTracking()
                 .Where(w => w.Login == login)
                 .Select(s => s.Photo).FirstOrDefault();
+
+            if(resultSearch == null)
+            {
+                resultSearch  = _postgres.Account.AsNoTracking()
+                .Where(w => w.Login == "defaultdefault")
+                .Select(s => s.Photo).FirstOrDefault();
+            }
+
+            var photo = Convert.ToBase64String(resultSearch);
+            return photo;
         }
 
         public async Task<AccountVM> GetMainViewModel(string userLogin)
@@ -54,10 +65,12 @@ namespace LanguageTutorService.Services
                 CountAnswer = GetCountAnswer(userLogin),
                 // если история не пустая, строим рейтинг, иначе реитинг 0
                 Reiting = GetReiting(userLogin),
+                Photo = GetPhoto(userLogin),
             };
         }
 
-        public double GetReiting(string login)
+
+        private double GetReiting(string login)
         {
             double countAllAnswer = _postgres.TtutorAudit.AsNoTracking()
                 .Where(a => a.NameLogin == login ).Count();

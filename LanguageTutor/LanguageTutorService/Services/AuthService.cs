@@ -35,7 +35,7 @@ namespace LanguageTutorService
         }
 
 
-        public void UpdatePhoto(IFormFile formFile, string login)
+        public bool UpdatePhoto(IFormFile formFile, string login)
         {
             byte[] newPhoto = null; ;
             if (formFile.Length > 0)
@@ -49,8 +49,10 @@ namespace LanguageTutorService
                     account.Photo = newPhoto;
                     postgres.Update(account);
                     postgres.SaveChanges();
+                    return true;
                 }
             }
+            return false;
         }
 
         public void GetPhoto(Account account)

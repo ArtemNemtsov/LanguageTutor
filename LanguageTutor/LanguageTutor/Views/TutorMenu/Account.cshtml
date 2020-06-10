@@ -20,9 +20,8 @@
 
         .img1 {
             height: 200px;
-            background: url(/img/youfoto.jpg) no-repeat;
             background-size: 100% auto;
-            background-position: center;
+            background-position: 50% 50%;
             background-color: #f47a60;
             border-bottom: 3px;
             border-radius: 10px;
@@ -32,7 +31,10 @@
 <body>
 
     <script>
-        function uploadFiles(inputId) {
+        function uploadFiles(inputId)
+        {
+            document.getElementById('SendFileResult').innerHTML = '';
+
   var input = document.getElementById(inputId);
   var files = input.files;
   var formData = new FormData();
@@ -43,7 +45,7 @@
 
   $.ajax(
     {
-          url: '/Account/LoadPhoto',
+      url: '/Account/LoadPhoto',
       data: formData,
       processData: false,
       contentType: false,
@@ -51,8 +53,15 @@
       success: function (data) 
       {
           let result = data;
-          ocument.getElementById('SendFileResult').innerHTML = result.errorsMessage;
-    
+          if (result.success)
+          {
+              document.getElementById('SendFileResult').innerHTML = result.body;
+              location.reload(true)
+          }
+          else
+          {
+              document.getElementById('SendFileResult').innerHTML = result.errorsMessage;
+          } 
       }
     }
   );
@@ -143,7 +152,9 @@
             </div>
             <div class="col-sm-4" style="background-color:#ced7d8; ">
                 <br /><br /><br />
-                <div class="img1"></div>
+                <div style="width: 100%; height:200px; overflow: hidden; border-bottom: 3px; border-radius: 10px; text-align:center;">
+                    <img class="img1" src="data:image/png;base64, @Model.Photo">
+                </div>
                 <br />
                 <div align="center">
                     <h4>@Model.Login</h4>

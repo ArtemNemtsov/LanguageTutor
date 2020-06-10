@@ -16,7 +16,7 @@
         .img1 {
             height: 200px;
             background-size: 100% auto;
-            background-position: center;
+            background-position: 50% 50%;
             background-color: #f47a60;
             border-bottom: 3px;
             border-radius: 10px;
@@ -101,17 +101,16 @@
             </div>
             <div class="col-sm-1">
             </div>
-            <div class="col-sm-4" style="background-color:#ced7d8; ">
+            <div class="col-sm-4" style="background-color:#ced7d8;  ">
                 <br /><br /><br />
-                div class="display-label">
-
-                <input asp-for="@Model.Photo." type="file" />
-
+                            <div style="width: 100%; height:200px; overflow: hidden; border-bottom: 3px; border-radius: 10px; text-align:center;">
+                                <img class="img1" src="data:image/png;base64, @Model.Photo">
+                            </div>
                 <br />
                 <div align="center">
                     <h4>@Model.Login</h4>
                     <br />
-                    <h6>Последняя ссе сия: @Model.LastVisit</h6>
+                    <h6>Последняя ссесия: @Model.LastVisit</h6>
                     <h6>Рейтинг на сайте: @Model.Reiting</h6>
                     <h6>Изучено слов: @Model.CountAnswer</h6>
                     <ul class="nav nav-pills flex-column">
@@ -128,7 +127,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" style="background-color:#316879" href="~/TutorMenu/Account" align="center">Личный кабинет<br></a>
                         </li>
-                        <br>
+                        <br/>
                         <li class="nav-item">
                             <a class="nav-link active" style="background-color:#316879" href="~/Home/Greeting" align="center">Выйти<br></a>
                         </li>

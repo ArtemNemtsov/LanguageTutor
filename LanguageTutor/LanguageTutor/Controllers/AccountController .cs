@@ -2,22 +2,17 @@
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using Fingers10.ExcelExport.ActionResults;
 using LanguageTutorService;
 using LanguageTutorService.Services;
 using MediaStudioService.Core.Classes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LanguageTutor.Controllers
 {
@@ -116,11 +111,13 @@ namespace LanguageTutor.Controllers
                 CheckValidImageType(files);            
 
                 // обновляем фото в БД
-                _accountService.UpdatePhoto(files, userLogin);
+                var isSuccess = _accountService.UpdatePhoto(files, userLogin);
+                if(!isSuccess)
+                    throw new InvalidOperationException($"Ошибка загрузки файла в БД!");
 
-                var result = _auditTutor.GetAccountViewModel(userLogin).Result;
 
-                return View("~/Views/TutorMenu/Account.cshtml", result);
+
+                return Json(RespоnceManager.CreateSucces("Фото профиля успешно обновлено"));
             }
             catch (Exception ex)
             {
